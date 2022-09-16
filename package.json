@@ -1,0 +1,23 @@
+{
+  "name": "directpostplayground",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LuyaoAsana/DirectPostPlayground.git"
+  },
+  "author": "Luyao",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/LuyaoAsana/DirectPostPlayground/issues"
+  },
+  "homepage": "https://github.com/LuyaoAsana/DirectPostPlayground#readme",
+  "dependencies": {
+    "express": "^4.18.1",
+    "stripe": "^10.10.0"
+  }
+}
