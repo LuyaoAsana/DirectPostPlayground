@@ -1,5 +1,5 @@
 {
-  "name": "directpostplayground",
+  "name": "direct-post-playground",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -10,14 +10,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/LuyaoAsana/DirectPostPlayground.git"
+    "url": "git+https://github.com/LuyaoAsana/direct-post-playground.git"
   },
   "author": "Luyao",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/LuyaoAsana/DirectPostPlayground/issues"
+    "url": "https://github.com/LuyaoAsana/direct-post-playground/issues"
   },
-  "homepage": "https://github.com/LuyaoAsana/DirectPostPlayground#readme",
+  "homepage": "https://github.com/LuyaoAsana/direct-post-playground#readme",
   "dependencies": {
     "axios": "^0.27.2",
     "dotenv": "^16.0.2",

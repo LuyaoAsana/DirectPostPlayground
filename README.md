@@ -1,4 +1,4 @@
-# DirectPostPlayground
+# direct-post-playground
 
 Create a `.env` file. Add:
 
