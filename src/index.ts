@@ -1,6 +1,7 @@
 import express from "express";
 import { stripeController } from "./Controllers/stripe_controller";
 import path from "path";
+import { zuoraController } from "./Controllers/zuora_controller";
 
 const app = express();
 app.use(express.json()); // for parsing application/json
@@ -15,14 +16,17 @@ app.use(
     next();
   },
   (req, res, next) => {
-    console.log("Request Params:", req.params);
+    if (req.query) {
+      console.log("Request Query:", req.query);
+    }
     next();
   },
   (req, res, next) => {
     console.log("Request Body:", req.body);
     next();
   },
-  stripeController
+  stripeController,
+  zuoraController
 );
 
 app.get("/", function (req, res) {
@@ -30,12 +34,17 @@ app.get("/", function (req, res) {
 });
 
 app.get("/confirm3ds", function (req, res) {
-  // ?setup_intent=${req.params.setup_intent}
-  res.redirect(`confirm3ds.html`);
+  res.redirect(`confirm3ds.html?setup_intent=${req.query.setup_intent}`);
+});
+
+app.get("/callback", function (req, res) {
+  res.redirect(
+    `result.html?success=${req.query.success}&errorMessage=${req.query.errorMessage}`
+  );
 });
 
 app.use("/", express.static(path.join(__dirname, "web")));
 
-app.listen(3300, () => {
-  console.log("Running on port 3300, http://localhost:3300/checkout.html");
+app.listen(3200, () => {
+  console.log("Running on port 3200, http://localhost:3200/checkout.html");
 });

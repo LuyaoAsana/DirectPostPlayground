@@ -1,0 +1,20 @@
+<html>
+  <head>
+    <script>
+      window.onload = () => {
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+        if (urlParams.get("success") === "true") {
+          document.getElementById("result").innerHTML = "ok";
+        } else {
+          document.getElementById("error").innerHTML =
+            urlParams.get("errorMessage");
+        }
+      };
+    </script>
+  </head>
+  <body>
+    <h2 id="result"></h2>
+    <h3 id="error"></h3>
+  </body>
+</html>

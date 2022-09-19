@@ -19,3 +19,13 @@ stripeController.post("/stripe/setupIntends", async function (req, res) {
   const setupIntent = await stripe.setupIntents.create(req.body);
   res.send(setupIntent);
 });
+
+stripeController.post("/stripe/retrieveSetupIntent", async function (req, res) {
+  const setupIntent = await stripe.setupIntents.retrieve(
+    req.body.setupIntentsId,
+    {
+      expand: ["latest_attempt"],
+    }
+  );
+  res.send(setupIntent);
+});

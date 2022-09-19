@@ -2,11 +2,12 @@
   <head>
     <script>
       window.onload = () => {
-        window.top.postMessage("3DS-authentication-complete");
         const queryString = window.location.search;
-        console.log(queryString);
         const urlParams = new URLSearchParams(queryString);
-        console.log(urlParams.setup_intent);
+        window.top.postMessage({
+          event_id: "3DS-authentication-complete",
+          setup_intent: urlParams.get("setup_intent"),
+        });
       };
     </script>
   </head>
