@@ -7,6 +7,8 @@ const app = express();
 app.use(express.json()); // for parsing application/json
 
 app.use(
+  express.static(path.join(__dirname, "web")),
+  express.static(path.join(__dirname, "css")),
   (req, res, next) => {
     console.log("Request URL:", req.originalUrl);
     next();
@@ -29,10 +31,6 @@ app.use(
   zuoraController
 );
 
-app.get("/", function (req, res) {
-  res.redirect("checkout.html");
-});
-
 app.get("/confirm3ds", function (req, res) {
   res.redirect(`confirm3ds.html?setup_intent=${req.query.setup_intent}`);
 });
@@ -42,8 +40,6 @@ app.get("/callback", function (req, res) {
     `result.html?success=${req.query.success}&errorMessage=${req.query.errorMessage}`
   );
 });
-
-app.use("/", express.static(path.join(__dirname, "web")));
 
 app.listen(3200, () => {
   console.log("Running on port 3200, http://localhost:3200/checkout.html");
