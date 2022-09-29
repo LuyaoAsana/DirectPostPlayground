@@ -2,9 +2,13 @@ import express from "express";
 import { stripeController } from "./Controllers/stripe_controller";
 import path from "path";
 import { zuoraController } from "./Controllers/zuora_controller";
+import { start } from "repl";
 
 const app = express();
 app.use(express.json()); // for parsing application/json
+
+let start_time: number;
+let end_time: number;
 
 app.use(
   (req, res, next) => {
@@ -23,6 +27,18 @@ app.use(
   },
   (req, res, next) => {
     console.log("Request Body:", req.body);
+    next();
+  },
+  (req, res, next) => {
+    console.log(Date.now());
+    if (req.originalUrl === "/stripe/setupPaymentMethod") {
+      start_time = Date.now();
+    }
+    if (req.originalUrl.startsWith("/callback?success=true")) {
+      end_time = Date.now();
+      console.log("summary");
+      console.log((end_time - start_time) / 1000);
+    }
     next();
   },
   stripeController,
